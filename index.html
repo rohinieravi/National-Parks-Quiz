@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>The National Parks Quiz</title>
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+	<header>
+		<img class="logo" src="images/forest1.png">
+		<h1>The National Parks Quiz</h1>
+	</header>
+	<section class="container">
+		<div class="js-start-container">
+			<h2>Let's test your knowledge on the National parks of the United States...</h2>
+			<button class="js-start-button">Start Quiz !!</button>
+		</div>	
+		<form class="hidden js-question-container">
+			<div class="js-status-container">
+				<span class="js-current-question"></span>
+				<span class="js-current-score"></span>
+			</div>
+			<p class="js-question"></p>
+			<div class="options">
+				<div class="option1">
+					<input type="radio" name="options" id="option1" checked><label for="option1"></label>
+				</div>
+				<div class="option2">
+					<input type="radio" name="options" id="option2"><label for="option2"></label>
+				</div>
+				<div class="option3">
+					<input type="radio" name="options" id="option3"><label for="option3"></label>
+				</div>
+				<div class="option4">
+					<input type="radio" name="options" id="option4"><label for="option4"></label>	
+				</div>
+			</div>
+			<div>
+				<button class="submit" type="submit">Submit Answer</button>
+				<span class="js-comments hidden"></span>
+			</div>
+		</form>
+		<div class="hidden js-result-container">
+				<h3>Good job!! You have completed the quiz..</h3>
+				<h3 class="js-score"></h3>
+				<button class="js-retake-button">Retake Quiz</button>
+		</div>	
+	</section>
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	<script src="app.js"></script>
+</body>
+</html>

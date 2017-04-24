@@ -1,0 +1,70 @@
+*{
+	box-sizing: border-box;
+}
+
+h1 {
+	display: inline;
+	margin:0px;
+	font-size: 32pt;
+}
+
+.logo {
+	height:45px;
+	width:70px;
+}
+
+header {
+	margin:0 auto;
+	padding: 20px 0;
+	text-align: center;
+}
+
+body{
+	margin:0;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.container {
+	border: solid 1px black;
+	height: 300px;
+	width:60%;
+	margin: 40px auto;
+	/*padding: 10px;*/
+	text-align: center;
+}
+
+.js-start-button, .submit, .js-retake-button {
+	height: 50px;
+	margin-top: 50px;
+}
+
+.hidden {
+	display: none;
+}
+
+.js-status-container {
+	border-bottom: solid 1px black;
+	position: relative;
+	text-align: left;
+	padding: 5px 0 5px 5px;
+}
+
+.js-current-score {
+	position: absolute;
+	right:5px;
+}
+
+.js-question {
+	padding: 0 5px;
+}
+
+.options {
+	padding: 5px 150px;
+	text-align: left;
+}
+
+.js-comments {
+	height:30px;
+	background-color: yellow;
+}
+
