@@ -5,37 +5,49 @@
 h1 {
 	display: inline;
 	margin:0px;
-	font-size: 32pt;
+	/*font-size: 28pt;*/
+	vertical-align: middle;
 }
 
 .logo {
 	height:45px;
 	width:70px;
+	border-radius: 50%;
+	margin-right: 20px;
+	vertical-align: middle;
 }
 
 header {
 	margin:0 auto;
 	padding: 20px 0;
 	text-align: center;
+	background-color: black;
+	color: white;
 }
 
 body{
 	margin:0;
-	font-family: "Comic Sans MS", cursive, sans-serif;
+	font-family: 'Raleway', sans-serif;
+	background-image: url(images/bg.jpg);
+	background-size: cover;
+
 }
 
 .container {
 	border: solid 1px black;
+	border-radius: 5px;
 	height: 300px;
-	width:60%;
-	margin: 40px auto;
-	/*padding: 10px;*/
+	width:50%;
+	margin: 50px auto;
 	text-align: center;
+	background-color: white;
+	background-image: linear-gradient(rgba(0,0,0,0.1),
+      rgba(0,0,0,0.1));
 }
 
 .js-start-button, .submit, .js-retake-button {
-	height: 50px;
-	margin-top: 50px;
+	height: 30px;
+	margin-top: 30px;
 }
 
 .hidden {
@@ -46,12 +58,13 @@ body{
 	border-bottom: solid 1px black;
 	position: relative;
 	text-align: left;
-	padding: 5px 0 5px 5px;
+	padding: 10px 0 10px 10px;
+	font-weight: bold;	
 }
 
 .js-current-score {
 	position: absolute;
-	right:5px;
+	right:10px;
 }
 
 .js-question {
@@ -64,7 +77,17 @@ body{
 }
 
 .js-comments {
+	margin-top: 10px;
 	height:30px;
-	background-color: yellow;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	font-weight: bold;
 }
 
+.wrong {
+	color:red;
+}
+
+.correct {
+	color: green;
+}

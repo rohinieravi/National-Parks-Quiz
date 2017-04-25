@@ -12,7 +12,7 @@ var state = {
 					['Great Smoky Mountains', 'Grand Canyon', 'Rocky Mountains', 'Yellowstone']],
 	currentQuestionNum : 0,
 	currentScore : 0,
-	answerStatus : ""
+	answerStatus : ''
 };
 
 var updateQuestionNum = function(state) {
@@ -20,58 +20,70 @@ var updateQuestionNum = function(state) {
 };
 
 var updateAnswerStatus = function(state, value) {
-	if (state.answers[state.currentQuestionNum-1] == value) {
-		state.answerStatus = "Correct Answer!";
+	if (state.answers[state.currentQuestionNum-1] === value) {
+		state.answerStatus = 'Correct Answer!';
 		state.currentScore += 1;
 	}
 	else {
-		state.answerStatus = "Wrong Answer! The correct answer is " + state.answers[state.currentQuestionNum-1] + ".";
+		state.answerStatus = 'Wrong Answer! The correct answer is ' + state.answers[state.currentQuestionNum-1] + '.';
 	}
 };
 
 var resetState = function(state) {
 	state.currentQuestionNum = 0;
 	state.currentScore = 0;
-	state.answerStatus = "";
+	state.answerStatus = '';
 };
 
 var renderQuestionContainer = function(status) {
-	$('.js-start-container').addClass("hidden");
-	$('.js-question-container').removeClass("hidden");
-	$('.js-result-container').addClass("hidden");
+	$('.js-start-container').addClass('hidden');
+	$('.js-question-container').removeClass('hidden');
+	$('.js-result-container').addClass('hidden');
 };
 
 var renderQuestion = function(state) {
-	$(".js-current-question").text("Question " + state.currentQuestionNum + " of 5");
-	$(".js-current-score").text("Status: " + state.currentScore + " correct, " + (state.currentQuestionNum-state.currentScore-1) + " incorrect");
+	$('.js-current-question').text('Question ' + state.currentQuestionNum + ' of ' + state.questions.length);
+	renderScore(state);
 	$('.js-question').text(state.questions[state.currentQuestionNum-1]);
 	var choices = state.answerOptions[state.currentQuestionNum-1];
-	for( var i = 1; i <= 4; i++ ) {
-		$("#option"+i).val(choices[i-1]);
-		$("#option"+i).next("label").text(choices[i-1]);
+	for( var i = 1; i <= choices.length; i++ ) {
+		$('#option'+i).val(choices[i-1]);
+		$('#option'+i).next('label').text(choices[i-1]);
 	}
+};
+
+var renderScore = function(state) {
+	$('.js-current-score').text('Status: ' + state.currentScore +  ' correct, ' + (state.currentQuestionNum-state.currentScore-1) + ' incorrect');
 };
 
 var renderComments = function(state, element) {
-	$(".js-comments").removeClass("hidden");
-	$(".js-comments").text(state.answerStatus);
-	if (state.currentQuestionNum != 5){
-		element.find("button").text("Next Question >>");
+	$('.js-comments').removeClass('hidden');
+	if(state.answerStatus.slice(0, 5) === 'Wrong') {
+		$('.js-comments').addClass('wrong');
+		$('.js-comments').removeClass('correct');
 	}
 	else {
-		element.find("button").text("Get My Score");
+		$('.js-comments').addClass('correct');
+		$('.js-comments').removeClass('wrong');
+	}
+	$('.js-comments').text(state.answerStatus);
+	if (state.currentQuestionNum !== state.questions.length) {
+		element.find('button').text('Next Question >>');
+	}
+	else {
+		element.find('button').text('Get My Score');
 	}
 };
 
-var removeComments = function(element){
-	element.find("button").text("Submit Answer");
-	$(".js-comments").addClass("hidden");
+var removeComments = function(element) {
+	element.find('button').text('Submit Answer');
+	$('.js-comments').addClass('hidden');
 };
 
 var renderResultContainer = function(state) {
-	$('.js-question-container').addClass("hidden");
-	$('.js-result-container').removeClass("hidden");
-	$('.js-result-container').find(".js-score").text("Your current score is " + state.currentScore+".");
+	$('.js-question-container').addClass('hidden');
+	$('.js-result-container').removeClass('hidden');
+	$('.js-result-container').find('.js-score').text('Your current score is ' + state.currentScore +'.' );
 };
 
 $('.js-start-button').click(function(event) {
@@ -82,17 +94,20 @@ $('.js-start-button').click(function(event) {
 
 $('.js-question-container').submit(function(event) {
 	event.preventDefault();
-	if($(this).find("button").text() == "Submit Answer") {
-		var answer = $(this).find("input[name=options]:checked").val();
+	var buttonText = $(this).find('button').text();
+	if(buttonText === 'Submit Answer') {
+		var answer = $(this).find('input[name=options]:checked').val();
 		updateAnswerStatus(state, answer);
 		renderComments(state,$(this));
+		updateQuestionNum(state);
+		renderScore(state);
 	}
-	else if ($(this).find("button").text() == "Get My Score") {
+	else if (buttonText === 'Get My Score') {
 		removeComments($(this));
 		renderResultContainer(state);
 	}
 	else {
-		updateQuestionNum(state);
+		
 		renderQuestion(state);
 		removeComments($(this));
 	}
